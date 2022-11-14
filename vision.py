@@ -30,11 +30,6 @@ def fileIO():
             print()
             continue
 
-        if ((path.exists(imgpath)) == False):
-            print("File does not exist!")
-            print("\n[!] Please enter a filepath")
-            continue
-
         extension = False
 
         # check to see if file extension is valid
@@ -50,6 +45,14 @@ def fileIO():
             print("[!] Please enter a valid file")
             print()
             imgpath = ""
+            continue
+
+        if ((path.exists(imgpath)) == False):
+            print("\n[!] File does not exist!")
+            print("[!] Please enter a filepath")
+            print()
+            imgpath = ""
+            continue
 
     return imgpath
 
@@ -85,8 +88,10 @@ def doVision(filepath=""):
         cv.rectangle(img, (xval, yval), (xval+width, yval+height), (0, 0, 0), 5)
 
     # show the face
+    cv.startWindowThread()
     cv.imshow(filepath, img)
-    print("Press any key to close on the window")
+    print("Press any key on the window to close")
 
     key = cv.waitKey(0)
+
     return True
