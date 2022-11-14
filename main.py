@@ -1,47 +1,19 @@
 import sys
-from vision import doVision
+from vision import *
 
-validExtensions = [".png", ".jpeg", ".jpg"]
+if __name__ == "__main__":
+    print()
+    print("--- OpenCV DEMO ---")
+    print("Written by Jack Farmer")
+    print()
 
-print()
-print("--- OpenCV DEMO ---")
-print("Written by Jack Farmer")
-print()
-doVision()
+    imgpath = fileIO()
 
-imgpath = ""
+    print("Your chosen file is: " + imgpath)
+    print()
 
-while (imgpath == ""):
-    imgpath = str(input("Enter local filepath with extension (q/Q to quit): "))
+    success = doVision(imgpath)
+    print()
+    if (success == False): sys.exit("--- An error occurred! ---")
 
-    # if Q or q, program exits #
-    if ((imgpath.lower() == "q")): 
-        sys.exit("\n--- Program exited successfully ---\n")
-
-    if ((imgpath == "")):
-        print("\n[!] Please enter a filepath")
-        print()
-        continue
-
-    extension = False
-
-    #### FIX THIS ####
-    for ext in validExtensions:
-        if (not imgpath.endswith(ext)):
-            continue
-        else:
-            extension = True
-            break
-    if (not extension):
-        print("\n[!] File extension is not valid")
-        print("[!] Please enter a valid file")
-        print()
-        imgpath = ""
-    
-    print("\nGot an extension!")
-
-
-print("Your chosen file is: " + imgpath)
-print()
-
-sys.exit("--- Program exited successfuly ---\n")
+    sys.exit("--- Program exited successfuly ---\n")
