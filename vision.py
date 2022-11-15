@@ -26,7 +26,9 @@ def fileIO():
 
         # if filepath is empty, try again
         if ((imgpath == "")):
-            print("\n[!] Please enter a filepath")
+            print("\n[!] Filepath cannot be empty!   [!]")
+            print("[!] Please enter a valid file.  [!]")
+
             print()
             continue
 
@@ -41,15 +43,15 @@ def fileIO():
                 break
         # extension isnt supported, try again
         if (extension == False):
-            print("\n[!] File extension is not valid")
-            print("[!] Please enter a valid file")
+            print("\n[!] File extension is not valid [!]")
+            print("[!] Please enter a valid file   [!]")
             print()
             imgpath = ""
             continue
 
         if ((path.exists(imgpath)) == False):
-            print("\n[!] File does not exist!")
-            print("[!] Please enter a filepath")
+            print("\n[!] File does not exist!      [!]")
+            print("[!] Please enter a valid file [!]")
             print()
             imgpath = ""
             continue
@@ -72,21 +74,32 @@ def faceDetect(filepath=""):
     if (filepath == "" or path.exists(filepath) == False): return False
     print("the given filepath is: " + filepath)
 
-    # read the image to a cv Mat
-    img = cv.imread(filepath)
-    # convert mat to grayscale for face detection
-    grayscale = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
-    # run the model against the given image
+    try:
+        # read the image to a cv Mat
+        img = cv.imread(filepath)
+    except:
+        print("Failed to read the image")
+        return False
+    
+    try:
+        # convert mat to grayscale for face detection
+        grayscale = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+    except:
+        print("Could not convert the image to grayscale")
+        return False
+
+    # load model
     faceDetect = cv.CascadeClassifier("facedetect.xml")
 
-    # collect results from the model
+    # run model against grayscale image, collect results from the model
     detected = faceDetect.detectMultiScale(grayscale, 1.1, 4)
 
     # draw a rectangle around each face found
     for (xval,yval,width,height) in detected:
+        # pass in image mat, x_init and y_init vals, 
+        # x_fin and y_fin vals, color of border, thickness of border
         cv.rectangle(img, (xval, yval), (xval+width, yval+height), (0, 0, 0), 10)
-
 
     # bring back original
     origimg = cv.imread(filepath)

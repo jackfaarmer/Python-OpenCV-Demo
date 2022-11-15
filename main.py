@@ -6,12 +6,12 @@ if __name__ == "__main__":
     print("\n--- OpenCV DEMO ---")
     print("Written by Jack Farmer\n")
 
-    # get filepath of desired image
+    # get filepath of desired image - from vision.py
     imgpath = fileIO()
 
     print("Your chosen file is: " + imgpath + "\n")
 
-    # run face detection
+    # run face detection - from vision.py
     success = faceDetect(imgpath)
 
     # exit if an error is encountered
