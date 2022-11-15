@@ -1,6 +1,6 @@
 import sys
 import cv2 as cv
-import numpy as np
+from numpy import concatenate
 from os import path
 
 '''
@@ -74,26 +74,33 @@ def faceDetect(filepath=""):
     if (filepath == "" or path.exists(filepath) == False): return False
     print("the given filepath is: " + filepath)
 
-
     try:
         # read the image to a cv Mat
         img = cv.imread(filepath)
     except:
-        print("Failed to read the image")
+        print("[ERROR] Failed to read the image")
         return False
     
     try:
         # convert mat to grayscale for face detection
         grayscale = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     except:
-        print("Could not convert the image to grayscale")
+        print("[ERROR] Could not convert the image to grayscale")
         return False
 
-    # load model
-    faceDetect = cv.CascadeClassifier("facedetect.xml")
+    try:
+        # load model
+        faceDetect = cv.CascadeClassifier("facedetect.xml")
+    except:
+        print("[ERROR] Could not load face detection xml model")
+        return False
 
-    # run model against grayscale image, collect results from the model
-    detected = faceDetect.detectMultiScale(grayscale, 1.1, 4)
+    try:
+        # run model against grayscale image, collect results from the model
+        detected = faceDetect.detectMultiScale(grayscale, 1.1, 4)
+    except:
+        print("[ERROR] Could not run face detection.")
+        return False
 
     # draw a rectangle around each face found
     for (xval,yval,width,height) in detected:
@@ -110,8 +117,8 @@ def faceDetect(filepath=""):
     img = cv.putText(img, 'Face Detected', (50, 50),
      cv.FONT_HERSHEY_SIMPLEX, 1.5, (0, 0, 0), 2, cv.LINE_AA)
     
-    # concatenate original with new image
-    vertical = np.concatenate((origimg, img), axis=0)
+    # concatenate original with new image (from numpy)
+    vertical = concatenate((origimg, img), axis=0)
 
     # show the face
     cv.startWindowThread()
