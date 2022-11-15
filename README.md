@@ -2,10 +2,10 @@
 
 ## About
 
-This is a demonstration utilizing the OpenCV API for Python3 by Jack Farmer
+This is a demonstration utilizing the OpenCV API for Python3 by Jack Farmer.
 This demonstration was made for CPSC 501 at Christopher Newport University
 
-This demo takes a filepath to a .png, .jpeg, or .jpg filetype and runs a number of OpenCV-specific functions to distinguish the original image from the modified. It then outputs the image to a new file saved in this repository.
+This demo takes a filepath to a [.png, .jpeg, or .jpg] filetype and runs a face detection model against an image to detect if a face is present, anf if so outline it. The demo will distinguish the original image from the modified with additional text, and outputs the original and modified images in a separate window for comparison.
 
 ## Requirements
 
@@ -17,22 +17,32 @@ This demo requires the following to run properly:
 
 All of the above should already be included in the provided Python environment.
 
+## Setup
+
+Setup is easy! Simply run the `setup.sh` script with your terminal by running:
+```bash
+cd <path to this repo>
+bash setup.sh
+```
+> **_NOTE_**: Please verify that you have installed python3 before running this script. If your system does
+not currently have python3 installed, please download and install it at [python.org/downloads](https://www.python.org/downloads/)
+
 ## How to use
 
-1. In your terminal of choice, `cd` to this directory (this repo)
-2. Run the following command:
+1. Run the following command:
 ```bash
+cd <path to this repo>
 python3 main.py
 ```
-3. The user should see the following output 
+2. The user should see the following output 
 
 - <img src="./media/enterfile.png" alt="enter file" width="400"/>
 
-4. If the file is valid, the program will run as expected 
+3. If the file is valid, the program will run as expected 
 
 - <img src="./media/successoutput.png" alt="success" width="400"/> 
 
-NOTE: in order to close the output window, the user must press any key while actively on the output window, otherwise the image will remain on the screen.
+> **_NOTE_**: in order to close the output window, the user must press any key while actively on the output window, otherwise the image will remain on the screen. This is not an issue on windows, as the user is able to click the 'x' at the top of the window, whereas the option is unavailable on macOS.
 
 
 ## Issue Reporting
