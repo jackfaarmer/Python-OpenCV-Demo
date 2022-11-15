@@ -43,6 +43,9 @@ python3 main.py
 
 > **_NOTE_**: in order to close the output window, the user must press any key while actively on the output window, otherwise the image will remain on the screen. This is not an issue on windows, as the user is able to click the 'x' at the top of the window, whereas the option is unavailable on macOS.
 
+- <img src="./media/outputwindow.png" alt="output window" width="200"/> 
+
+
 
 ## Issue Reporting
 
