@@ -3,7 +3,6 @@
 ## About
 
 This is a demonstration utilizing the OpenCV API for Python3 by Jack Farmer.
-This demonstration was made for CPSC 501 at Christopher Newport University
 
 This demo takes a filepath to a [.png, .jpeg, or .jpg] filetype and runs a face detection model against an image to detect if a face is present, anf if so outline it. The demo will distinguish the original image from the modified with additional text, and outputs the original and modified images in a separate window for comparison.
 
