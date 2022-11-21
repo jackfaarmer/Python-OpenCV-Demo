@@ -41,6 +41,7 @@ def fileIO():
             else:
                 extension = True
                 break
+
         # extension isnt supported, try again
         if (extension == False):
             print("\n[!] File extension is not valid [!]")
@@ -49,6 +50,7 @@ def fileIO():
             imgpath = ""
             continue
 
+        # file extension valid, file itself does not exist
         if ((path.exists(imgpath)) == False):
             print("\n[!] File does not exist!      [!]")
             print("[!] Please enter a valid file [!]")
@@ -125,6 +127,7 @@ def faceDetect(filepath=""):
     cv.imshow(filepath, vertical)
     print("Press any key on the window to close")
 
+    # wait for any key pressed on window to close
     key = cv.waitKey(0)
 
     return True
